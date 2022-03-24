@@ -1,10 +1,13 @@
-# DWIN_T5UIC1_LCD
+### Inspiration from [Octoprint-TFT](https://github.com/mcuadros/OctoPrint-TFT) created by [@mcuadros](https://github.com/mcuadros/OctoPrint-TFT)
+### This fork is for T5L screen used by Flsun Super Racer
+### Klipper installation https://3dprintbeginner.com/klipper-on-flsun-super-racer
+### Klipper printer.cfg https://github.com/danorder/Flsun-super-racer-Full-klipper-config-
 
-## Python class for the Ender 3 V2 LCD runing klipper3d with OctoPrint / Moonraker 
+# SR_Screen_Klipper
+
+## Python class for the Super Racer LCD runing klipper with Moonraker 
 
 https://www.klipper3d.org
-
-https://octoprint.org/
 
 https://github.com/arksine/moonraker
 
@@ -28,7 +31,11 @@ https://github.com/arksine/moonraker
     dtoverlay=disable-bt
 
 ### [Enabling Klipper's API socket](https://www.klipper3d.org/API_Server.html)
-  By default, the Klipper's API socket is not enabled. In order to use the API server, the file /etc/default/klipper need to be updated form
+  The latest install of Klipper has the API socket enabled. Check that you have /tmp/klippy_uds
+  
+  If its missing, then do the following to enable
+  
+  In order to use the API server, the file /etc/default/klipper need to be updated form
 
     KLIPPY_ARGS="/home/pi/klipper/klippy/klippy.py /home/pi/printer.cfg -l /tmp/klippy.log"
 To:
@@ -43,37 +50,30 @@ To:
 
   `sudo pip3 install multitimer`
 
-  `git clone https://github.com/odwdinc/DWIN_T5UIC1_LCD.git`
+  `git clone https://github.com/yantz74/SR_Screen_Klipper.git`
 
 
 ### Wire the display 
-  * Display <-> Raspberry Pi GPIO BCM
-  * Rx  =   GPIO14  (Tx)
-  * Tx  =   GPIO15  (Rx)
-  * Ent =   GPIO13
-  * A   =   GPIO19
-  * B   =   GPIO26
-  * Vcc =   2   (5v)
-  * Gnd =   6   (GND)
+  * Display <-> Raspberry Pi Physical Pin
+  * VCC  =   4  (5v)
+  * Gnd  =   6  (Gnd)
+  * Rx =   8   (Tx)
+  * Tx =   10   (Rx)
 
 ### Run The Code
 
-Enter the downloaded DWIN_T5UIC1_LCD folder.
+Enter the downloaded SR_Screen_Klipper folder.
 Make new file run.py and add
 
 ```python
 #!/usr/bin/env python3
 from dwinlcd import DWIN_LCD
 
-encoder_Pins = (26, 19)
-button_Pin = 13
 LCD_COM_Port = '/dev/ttyAMA0'
 API_Key = 'XXXXXX'
 
 DWINLCD = DWIN_LCD(
 	LCD_COM_Port,
-	encoder_Pins,
-	button_Pin,
 	API_Key
 )
 ```
@@ -84,7 +84,7 @@ Run with `python3 ./run.py`
 
 	Note: Delay of 30s after boot to allow webservices to settal.
 	
-	path of `run.py` is expected to be `/home/pi/DWIN_T5UIC1_LCD/run.py`
+	path of `run.py` is expected to be `/home/pi/SR_Screen_Klipper/run.py`
 
    `sudo chmod +x run.py`
    
@@ -108,7 +108,7 @@ Run with `python3 ./run.py`
 
  Print Menu:
  
-    * List / Print jobs from OctoPrint / Moonraker
+    * List / Print jobs from Moonraker
     * Auto swiching from to Print Menu on job start / end.
     * Display Print time, Progress, Temps, and Job name.
     * Pause / Resume / Cancle Job
