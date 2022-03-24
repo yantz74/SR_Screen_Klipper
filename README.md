@@ -1,5 +1,5 @@
 ### Inspiration from [Octoprint-TFT](https://github.com/mcuadros/OctoPrint-TFT) created by [@mcuadros](https://github.com/mcuadros/OctoPrint-TFT)
-### This fork is for T5L screen used by Flsun Super Racer
+### This fork from [odwdinc](https://github.com/odwdinc/DWIN_T5UIC1_LCD) is for T5L screen used by Flsun Super Racer
 ### Klipper installation https://3dprintbeginner.com/klipper-on-flsun-super-racer
 ### Klipper printer.cfg https://github.com/danorder/Flsun-super-racer-Full-klipper-config-
 
